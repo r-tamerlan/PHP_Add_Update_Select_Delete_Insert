@@ -17,7 +17,7 @@ class uye  {
           $yas=htmlspecialchars($_POST["yas"]);
           $aidat=htmlspecialchars($_POST["aidat"]);
 
-      $data=$baglanti->prepare("insert into uyeler (ad,soyad,yas,aidat) VALUES ('$ad','$soyad',$yas,$aidat)");
+      $data=$baglanti->prepare("insert into users (ad,soyad,yas,aidat) VALUES ('$ad','$soyad',$yas,$aidat)");
       $data->execute();
           echo '<tr>
             <td colspan="6" class="alert-success" style="text-align: center">Uye EKLENDi</td>
@@ -58,7 +58,7 @@ class uye  {
        @$uyeid=$_GET["uyeid"];
 
        if(@$uyeid):
-           $cikti=$baglanti->prepare("select * from uyeler where id=$uyeid");
+           $cikti=$baglanti->prepare("select * from users where id=$uyeid");
            $cikti->execute();
            $cikti2=$cikti->fetch(PDO::FETCH_ASSOC);
 
@@ -95,7 +95,7 @@ class uye  {
            $yas=htmlspecialchars($_POST["yas"]);
            $aidat=htmlspecialchars($_POST["aidat"]);
 
-$data=$baglanti->prepare("update uyeler set ad='$ad',soyad='$soyad',yas=$yas,aidat=$aidat where id=$id");
+$data=$baglanti->prepare("update users set ad='$ad',soyad='$soyad',yas=$yas,aidat=$aidat where id=$id");
 $data->execute();
            echo '<tr>
             <td colspan="6" class="alert-success" style="text-align: center">Guncelledni</td>
@@ -112,7 +112,7 @@ $data->execute();
         if (@$_GET["uyeid"]):
             @$id=$_GET["uyeid"];
 
-            $data=$baglanti->prepare("delete from uyeler where id=$id");
+            $data=$baglanti->prepare("delete from users where id=$id");
             $data->execute();
             echo '<tr>
             <td colspan="6" class="alert-danger" style="text-align: center">Uye Silindi</td>
@@ -126,7 +126,7 @@ $data->execute();
     }
 
   function listele ($baglanti){
-      $data=$baglanti->prepare("select * from uyeler");
+      $data=$baglanti->prepare("select * from users");
       $data->execute();
       while ($cikti=$data->fetch(PDO::FETCH_ASSOC)):
           echo '    <tr>
